@@ -10,7 +10,13 @@ package chapter5;
 
 public class TestClass {
 
-    public TestClass(){
+    int a;
+
+    public TestClass(String s){
+        this(1);
+        return;
+    }
+    public TestClass(int s){
         return;
     }
 
@@ -24,4 +30,13 @@ public class TestClass {
         //test-branch
     }
 
+    public void testThis(){
+        System.out.println("this");
+    }
+
+
+
+    public static void main(String[] args) {
+
+    }
 }
