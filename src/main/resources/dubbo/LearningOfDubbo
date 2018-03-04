@@ -1,0 +1,28 @@
+DUBBO 学习
+    一、特点
+        按照分层的方式架构，最大限度的实现松耦合
+        两个角色：服务提供方（provider），服务消费方（consumer）
+    二、分层结构
+        Dubbo架构共分为10层：
+            1. 服务层接口层（service）：与实际业务逻辑相关，根据业务逻辑设计接口和实现
+            2. 配置层（config）： 对外配置接口，以ServiceConfig（提供方）和ReferenceConfig（消费方）为中心，
+                可以new配置类，也可以通过spring解析配置生成配置类
+            3. 服务接口透明代理(proxy):生成服务的客户端stub和服务端skeleton，以serviceProxy为中心，扩展为ProxyFactory
+            4. 服务注册层（Registry）：封装服务地址的注册与发现，以服务URL为中心，扩展接口为Registry，RegistryService和RegistryFactory
+                PS：可能没有服务注册中心，此时服务提供方直接暴露服务
+            5. 集群层（Cluster）：封装多个提供者的路由及负载均衡，桥接注册中心，以Invoker为中心，
+                扩展接口有Router，LoadBalance，Cluster，Directory
+            6. 监控层（Monitor）：RPC调用次数，时间监控，以statistics为中心，扩展接口有Monitor，MonitorService，MonitorFactory
+            7. 远程调用层（Protocol）：封装RPC调用，以Invocation和result为中心，扩展接口为Protocol,Invoker,Exporter
+                Protocol:服务域，Invoker暴露和引用的主功能入口，负责Invoker的生命周期管理
+                Invoker：dubbo的核心模型，代表着一个可执行体，可以向他发起invoke的调用
+            8. 信息交换层（Exchange）：封装请求和响应，以Request和Response为中心，
+                扩展接口有ExChanger，ExchangeChannel，ExchangeClient，ExchangeServer
+            9: 网络传输层（Transport）：抽象mina和netty为统一接口，以Message为中心，
+                扩展接口有：Channel，Transport,Client,Server,Codec
+            10.数据序列化层（Serialize）:序列化数据，扩展接口有：Serialization，ObjectInput，ObjectOutput，ThreadPool
+    三、服务注册
+        Multicast注册中心
+        zookeeper注册中心
+        redis注册中心
+        Simple注册中心
