@@ -30,3 +30,9 @@
                     Executors.newCachedThreadPool
                 PriorityBlockingQueue:
                     一个具有优先级的无限阻塞任务队列
+        （三）线程池的关闭
+            shutdown():将线程池的状态设置为SHUTDOWN，然后关闭所有没有正在执行的线程
+            shutdownNow（）：将线程池的状态设置为STOP，遍历线程池的所有线程，调用每个执行线程的interrupt方法
+        （四）ConcurrentHashMap
+            锁分段技术：首先将数据分为一段段的存储，然后分别加锁
+            结构：ConcurrentHashMap是由Segment和Entry构成，一个ConcurrentHashMap含有一个Segment数组，一个segment含有一个Entry数组

@@ -1,0 +1,13 @@
+Redis和MenCached
+    一、性能
+        Redis只是用单核，MemCached使用多核
+        存储小数据Redis,存储大量数据MemCached性能高
+    二、内存空间和数据量
+        MemCached可以修改最大内存
+        Redis增加了VM的特性，突破了物理内存的限制
+    三、数据
+        MemCached数据结构单一，仅支持键值对
+        Redis数据结构多样
+    四、可靠性
+        MemCached不支持数据持久化
+        Redis支持数据持久化和数据恢复
