@@ -35,4 +35,23 @@
             shutdownNow（）：将线程池的状态设置为STOP，遍历线程池的所有线程，调用每个执行线程的interrupt方法
         （四）ConcurrentHashMap
             锁分段技术：首先将数据分为一段段的存储，然后分别加锁
-            结构：ConcurrentHashMap是由Segment和Entry构成，一个ConcurrentHashMap含有一个Segment数组，一个segment含有一个Entry数组
+            结构：ConcurrentHashMap是由Segment和Entry构成，一个ConcurrentHashMap含有一个Segment数
+                组，一个segment含有一个Entry数组
+        （五）常用类
+            ConcurrentHashMap：HashMap的线程安全类
+            CopyOnWriteArrayList：延时懒惰策略
+            CopyOnWriteArraySet:基于CopyOnWriteArrayList实现的无重复数组，每次插入都需重新遍历数据，
+                                效率低于CopyOnWriteArrayList
+            Atomic类：原子性操作
+            ThreadPoolExecutor：线程池的实现，主要通过一些策略实现一个典型的线程池
+                                AbortPolicy：对拒绝任务抛弃处理，抛出异常
+                                CallerRunsPolicy：重试添加当前任务，自动调用execute方法，直到成功
+                                DiscardOldPolicy：对拒绝任务不抛弃，抛弃队列中等待最久的任务，并不抛出异常
+                                DiscardPolicy：对拒绝任务直接抛弃，并不抛出异常
+            RejectedExecutionHandler：上述四种策略的接口
+
+            FutureTask:异步获取数据
+            Semaphore：控制对某个资源访问个数的类，例如数据库的连接池
+            CyclicDownLatch：计数器
+            CyclicBarrier：集合点
+            Condition：控制锁在并发条件下的唤醒和等待await(),signal()
