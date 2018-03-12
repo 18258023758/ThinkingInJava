@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
+
 /**
  * @author zhangbj
  * @version 1.0
@@ -21,10 +28,42 @@ public class Solution {
         }
     }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        int[] a = {3, 2, 1, 4, 5};
-        solution.sortIntegers(a);
 
+    // 评测题目: 请实现以下shell脚本的功能   (题目中awk表示取第三列)
+// cat /home/admin/logs/webx.log | grep "login" | awk '{print $3}' | sort | uniq -c | sort -k 2r
+// ------------------
+    // 902 login lilei www.taobao.com
+    // 220 login hmm s.taobao.com
+    // 499 visit  cde i.taobao.com
+    // 879 login  lilei s.taobao.com
+// ------------------
+// 输出
+//     2 lilei
+//     1 hmm
+// ————————-
+
+
+    public static void main(String[] args) throws IOException {
+        String path = "F:\\webx.log";
+        String findWord = "login";
+        Integer printNumber = 3;
+        Set<String> set;
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))){
+            set= new TreeSet<String>();
+            String s;
+            while ((s = reader.readLine())!=null){
+                if (s.indexOf(findWord)!=-1){
+                    String[] strings = s.split("\\s+");
+                    set.add(strings[printNumber -1]);
+                }
+            }
+            int index = set.size();
+            Iterator<String> iterator = set.iterator();
+            while (iterator.hasNext()){
+                System.out.println(index-- +" "+iterator.next());
+            }
+        }
     }
+
+
 }

@@ -26,3 +26,12 @@ DUBBO 学习
         zookeeper注册中心
         redis注册中心
         Simple注册中心
+    四、序列化
+        hessian二进制序列化
+    五、分布式事务处理方式
+        1.引入可靠的消息中间件
+        2.tcc事务
+        TRY CONFIRM CANCEL
+        TRY：完成所有业务检查（一致性），预留必须业务资源（隔离性）
+        CONFIRM：TRY执行成功后，对业务进行提交
+        CANCEL：TRY失败后，对业务进行回退

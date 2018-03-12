@@ -1,0 +1,21 @@
+RabbitMQ学习（基于https://www.sojson.com/blog/48.html）
+    一、业务场景
+        1.异步处理
+        2.削减峰值
+        3.业务解耦
+    二、AMQP
+       Advanced Message Queuing Protocol 高级消息协议
+    三、重要对象
+        ConnectionFactory
+        Connection
+        Channel
+    四、Exchange Type
+        1.fanout
+            它会把所有发送到该Exchange的消息路由到所有与他绑定的Queue中。
+        2.direct
+            把消息路由到binding key和routing key完全匹配的Queue中
+        3.TOPIC
+            把消息路由到binding key和routing keyz正则匹配的Queue中
+            相关正则 * 匹配一个单词，#匹配多个单词
+        4.HEADERS
+            不根据routing key和binding key匹配，而是根据消息内容中的headers属性匹配（key-value）

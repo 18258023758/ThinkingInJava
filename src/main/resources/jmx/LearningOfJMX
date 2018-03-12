@@ -1,0 +1,17 @@
+JMX（Java Message Extension）学习：
+    一、作用
+        管理Java的一种机制，监控正在运行的Java程序，常用于管理线程，内存，日志，服务重启，系统环境等
+    二、基本术语
+        （一）MBean
+            manager bean，管理构件，代表着一个被管理的资源实例，通过Mbean暴露的属性和方法，外界可以获得被管理资源
+            的状态和操纵Mbean的行为。共有四种Mbean：
+                1.standard MBean：
+                2.Dynamic Mbean
+                3.Open Mbean
+                4.Model Mbean
+        （二）MbeanServer
+            Mbean生存在一个MbeanServer中， MbeanServer管理这些bean，并代理外界对Mbean的访问，MbeanServer还
+            提供了一种注册机制，外界可以通过名字来获得对应MBean的实例
+        （三）JMX Agent
+            Agent只是java的一个进程，包括MBean和一系列的MbeanService，
+        （四）Protocol Adapter 和Connection

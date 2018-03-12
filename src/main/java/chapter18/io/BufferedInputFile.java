@@ -23,14 +23,7 @@ public class BufferedInputFile {
     }
 
     public static void write(String path,String content) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path,true))){
 
-            String[] str = content.split("\n");
-            for (int index=0;index<str.length;index++){
-                writer.write(str[index]);
-                writer.newLine();
-            }
-        }
     }
 
     public static void main(String[] args) throws IOException {
