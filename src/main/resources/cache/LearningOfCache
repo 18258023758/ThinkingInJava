@@ -91,8 +91,11 @@ Cache学习：
             原理：某个key访问非常频繁，一旦过期，有大量线程来构建缓存
             解决：分布式锁
                 不设置过期时间
+        （四）主服务器DOWN
+            redis集群会有一个监控中心，使用sentinel监控，每过down-after-millsseconds，
+            执行心跳检查，若无反应，下线主服务器，
 
-edis和MenCached
+Redis和MenCached
     一、性能
         Redis只是用单核，MemCached使用多核
         存储小数据Redis,存储大量数据MemCached性能高

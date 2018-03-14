@@ -41,4 +41,12 @@ public class Rabbit {
 
         }
     }
+
+    public synchronized void mA(){
+        //a对象
+    }
+
+    public synchronized void mB(){
+        //a对象
+    }
 }

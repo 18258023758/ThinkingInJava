@@ -35,3 +35,46 @@ DUBBO 学习
         TRY：完成所有业务检查（一致性），预留必须业务资源（隔离性）
         CONFIRM：TRY执行成功后，对业务进行提交
         CANCEL：TRY失败后，对业务进行回退
+    六、启动时检查
+        dubbo缺省会在应用启动时进行检查是否可用，如果不可用，会抛出异常，默认check="true"
+    七、集群容错
+        failover cluster：失败自动重换，尝试其他服务器，默认会重试两次（retries="2"）,用于读操作
+        failfast cluster：只发起一次调用，失败立即抛异常，用于写操作
+        failsafe cluster：失败之后忽略异常，通常用于日志记录
+        failback cluster：失败自动回复，进行后台记录，定时重发，通常用于消息通知
+        forking cluster：并行调用，只要有一个成功就返回，用于并发量高的情况
+        broadcast cluster：广播调用所有提供者，逐个调用，有任意一台报错则报错，通知所有提供者更新
+    八、负载均衡
+        Random LoadBalance：随机，按权重设置随机概率
+            调用量越大分布越均匀，有利于动态调整提供者的权重
+        RoundRobin LoadBalance：轮询，按公约后的权重设置轮询比例
+            慢的提供者会累积请求
+        LeastActive LoadBalance：最少活跃调用数
+            慢的提供者收到更少的请求
+        ConsistentHash LoadBalance：一致性哈希，相同的请求总是发到同一个提供者去
+    九、线程模型
+        线程模型需要配置dispatcher和threadPool两个参数
+        （一）dispatcher
+            all：所有消息都发到线程池
+            direct：所有消息直接在i/o线程上执行
+            message：只有请求响应派发到线程池
+            execution：只有请求消息派发到线程池
+            connection:除了连接断开，其他消息发派到线程池
+        （二）ThreadPool
+            fixed：固定线程池，启动时建立线程，一直持有，不关闭
+            cached：需要时创建线程，空闲一分钟后删除
+            limited：持续增长的线程池，为了避免搜索是突然出现大流量引起的性能问题
+    十、缓存
+        lru：最近最少原则
+        threadLocal：当前线程的缓存
+        jcache：
+    十一、事件
+        onreturn，onthrow，oninvoke
+        与async组合使用
+    十二、流量控制
+        （一）并发控制
+            配置：executes（请求占用线程池） actives（占用的请求数）
+        （二）连接控制
+            配置：
+                服务端:accepts,接收连接不能超过accepts（针对某个具体的接口）
+                客户端：connections:使用连接不能超过connections（针对某个具体的接口）
