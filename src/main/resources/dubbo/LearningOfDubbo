@@ -78,3 +78,5 @@ DUBBO 学习
             配置：
                 服务端:accepts,接收连接不能超过accepts（针对某个具体的接口）
                 客户端：connections:使用连接不能超过connections（针对某个具体的接口）
+    十三、附加参数（隐式参数）
+    RpcContext.setAttachments();
